@@ -1,16 +1,32 @@
-import { Module } from '@nestjs/common';
+import { todoEntity } from './todo/entities/todo.entity';
+import { Test2Module } from './test2/test2.module';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { testModule } from './testModule';
-import { Test2Module } from './test2/test2.module';
-import { SharedModuleModule } from './shared-module/shared-module.module';
-import { GenericsModule } from './generics/generics.module';
-import { TodoServiceModule } from './todo-service/todo-service.module';
+import { TestModule } from './test.module';
+import { TodoModule } from './todo/todo.module';
 import { SharedModule } from './shared/shared.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  imports: [testModule, Test2Module, SharedModuleModule, GenericsModule, TodoServiceModule, SharedModule],
+  imports: [TestModule, Test2Module, TodoModule, SharedModule, TypeOrmModule.forRoot({
+    type: 'mysql',
+    host: 'localhost',
+    port: 3306,
+    username: 'root',
+    password: '',
+    database: 'nestsi2',
+    entities: ["dist/**/*.entity.{js,ts}"],
+    synchronize: true,
+    logging: true
+  }),],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule  {
+
+
+
+
+
+}

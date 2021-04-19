@@ -1,14 +1,9 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 
-
-@Module(metadata:{
+@Module({
   imports: [],
-    exports: [],
+  exports: [],
   controllers: [],
+  providers: []
 })
-
-export class testModule {}
-
-
+export class TestModule {}
